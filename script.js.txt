@@ -1,0 +1,26 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Toggle Mobile Menu
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Optional: Animate hamburger to X
+        const spans = menuToggle.querySelectorAll('span');
+        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : '';
+        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(6px, -7px)' : '';
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            // Reset hamburger icons
+            const spans = menuToggle.querySelectorAll('span');
+            spans.forEach(s => s.style.transform = '');
+            spans[1].style.opacity = '1';
+        });
+    });
+});
